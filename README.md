@@ -10,12 +10,10 @@ This architecture uses AWS services for secure, scalable deployment of a contain
 
 ### 1. Front-End
 - **CloudFront** serves static content from a private **S3 bucket** (HTTPS only).
-- **Deployment**: Triggered by a merge to the `main` branch, using CI/CD to automate the build, upload to S3, and invalidate CloudFront.
 
 ### 2. Backend Services
 - **ECS** runs containerized backend services across two availability zones within **private subnets**.
 - **Load Balancer**: A Load Balancer routes traffic from public subnets to the backend in private subnets.
-- **Deployment**: Triggered by a merge to the `main` branch, with CI/CD automating container builds, pushing to ECR, and updating ECS services.
 
 ### 3. Database Layer
 - **RDS (PostgreSQL/MySQL)** is deployed in a separate VPC. Access is restricted to backend services via VPC peering.
@@ -56,9 +54,9 @@ This architecture uses AWS services for secure, scalable deployment of a contain
 ## Deployment Process
 
 ### Front-End Deployment
-- **Process**: Static assets are built, uploaded to S3, and CloudFront cache is invalidated.
+- **Process**: Static assets are built, uploaded to S3, and CloudFront cache is invalidated all via CI/CD pipeline.
 - **Trigger**: Automatically triggered by a merge to the `main` branch via a CI/CD pipeline (e.g., Jenkins).
 
 ### Backend Deployment
-- **Process**: Docker images for backend services are built, pushed to ECR, and deployed to ECS.
+- **Process**: Docker images for backend services are built, pushed to ECR, and deployed to ECS via CI/CD pipeline.
 - **Trigger**: Automatically triggered by a merge to the `main` branch via CI/CD pipeline (e.g., Jenkins).
