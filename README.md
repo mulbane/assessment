@@ -14,7 +14,7 @@ This architecture uses AWS services for secure, scalable deployment of a contain
 
 ### 2. Backend Services
 - **ECS** runs containerized backend services across two availability zones within **private subnets**.
-- **Load Balancer**: An Application Load Balancer (ALB) routes traffic from public subnets to the backend in private subnets.
+- **Load Balancer**: A Load Balancer routes traffic from public subnets to the backend in private subnets.
 - **Deployment**: Triggered by a merge to the `main` branch, with CI/CD automating container builds, pushing to ECR, and updating ECS services.
 
 ### 3. Database Layer
@@ -39,7 +39,7 @@ This architecture uses AWS services for secure, scalable deployment of a contain
 
 ## Data Flow
 1. User requests are served via CloudFront from the S3 bucket.
-2. Front-end interacts with backend services through the ALB.
+2. Front-end interacts with backend services through the Load Balancer.
 3. Backend services communicate with the RDS database and queue tasks in SQS.
 4. Task Runner processes tasks from SQS for asynchronous jobs like email notifications.
 
