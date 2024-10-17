@@ -57,8 +57,8 @@ This architecture uses AWS services for secure, scalable deployment of a contain
 
 ### Front-End Deployment
 - **Process**: Static assets are built, uploaded to S3, and CloudFront cache is invalidated.
-- **Trigger**: Automatically triggered by a merge to the `main` branch via a CI/CD pipeline (e.g., AWS CodePipeline).
+- **Trigger**: Automatically triggered by a merge to the `main` branch via a CI/CD pipeline (e.g., Jenkins).
 
 ### Backend Deployment
 - **Process**: Docker images for backend services are built, pushed to ECR, and deployed to ECS.
-- **Trigger**: Automatically triggered by a merge to the `main` branch via CI/CD.
+- **Trigger**: Automatically triggered by a merge to the `main` branch via CI/CD pipeline (e.g., Jenkins).
